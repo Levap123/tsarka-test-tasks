@@ -1,3 +1,3 @@
 package handlers
 
-type handlers struct{}
+type Handlers struct{}
