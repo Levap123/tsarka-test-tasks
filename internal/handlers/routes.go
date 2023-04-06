@@ -1,6 +1,8 @@
 package handlers
 
-import "net/http"
+import (
+	"net/http"
+)
 
 func (h *Handlers) InitRoutes() http.Handler {
 	mux := http.NewServeMux()
