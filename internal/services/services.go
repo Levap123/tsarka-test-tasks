@@ -8,6 +8,7 @@ type Services struct {
 
 type AlgosServiceI interface {
 	FindSubstring(str string) string
+	EmailCheck(str string) []string
 }
 
 func NewServices() *Services {

@@ -33,7 +33,7 @@ func TestAlgosService_EmailCheck(t *testing.T) {
 		{
 			name: "should work fine with any space symbols",
 			args: args{
-				str: "ABC vsem ku TSARKA THE BEST Email: \n \r \t     qwe@rte.rte Email:    \ntest123@org.org Email:\t\n   abc@abc.abc",
+				str: "Email: asd asd@gmail.com TSARKA THE BEST Email: \n \r \t     qwe@rte.rte Email:    \ntest123@org.org Email:\t\n   abc@abc.abc",
 			},
 			want: []string{"qwe@rte.rte", "test123@org.org", "abc@abc.abc"},
 		},
