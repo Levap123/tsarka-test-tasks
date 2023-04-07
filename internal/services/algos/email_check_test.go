@@ -17,11 +17,32 @@ func TestAlgosService_EmailCheck(t *testing.T) {
 		want []string
 	}{
 		{
-			name: `should return all email matching the pattern «Email:__$email»`,
+			name: "should return all email matching the pattern «Email:__$email»",
 			args: args{
-				str: "Email: test@mail.ru hello heeeelloo abcd@g,ail.com , Email: qwer@qwerty.org",
+				str: "Email: test@mail.ru hello heeeelloo abcd@g,ail.com, Email: qwer@qwerty.org Email: q1w3e4r5t5y@tre.com",
 			},
-			want: []string{"test@mail.ru", "qwer@qwerty.org"},
+			want: []string{"test@mail.ru", "qwer@qwerty.org", "q1w3e4r5t5y@tre.com"},
+		},
+		{
+			name: "should return empty slice",
+			args: args{
+				str: "Email: abc@abc Email: @gmail.com Email: qwerty@ post@post.com test123@gmail.com",
+			},
+			want: []string{},
+		},
+		{
+			name: "should work fine with any space symbols",
+			args: args{
+				str: "ABC vsem ku TSARKA THE BEST Email: \n \r \t     qwe@rte.rte Email:    \ntest123@org.org Email:\t\n   abc@abc.abc",
+			},
+			want: []string{"qwe@rte.rte", "test123@org.org", "abc@abc.abc"},
+		},
+		{
+			name: "should return only correct email adresses",
+			args: args{
+				str: "Email: abx@mail..ru, Email qwe@.., Email: correct@correct.com, Email: qwe@qwe Email: incorrect@@qwe.qwe",
+			},
+			want: []string{"correct@correct.com,"},
 		},
 	}
 	for _, tt := range tests {
