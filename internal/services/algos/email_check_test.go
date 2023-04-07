@@ -40,9 +40,9 @@ func TestAlgosService_EmailCheck(t *testing.T) {
 		{
 			name: "should return only correct email adresses",
 			args: args{
-				str: "Email: abx@mail..ru, Email qwe@.., Email: correct@correct.com, Email: qwe@qwe Email: incorrect@@qwe.qwe",
+				str: "Email: abx@mail..ru, Email qwe@.., Email: correct@correct.com, Email:alotdomains@gmail.com.kz.org.uk Email: q..we@qwe Email: incorrect@@qwe.qwe",
 			},
-			want: []string{"correct@correct.com,"},
+			want: []string{"correct@correct.com", "alotdomains@gmail.com.kz.org.uk"},
 		},
 	}
 	for _, tt := range tests {

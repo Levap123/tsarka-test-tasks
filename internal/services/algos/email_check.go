@@ -7,8 +7,11 @@ import (
 )
 
 func (s *AlgosService) EmailCheck(str string) []string {
-	allowedSymbols := "a-zA-Z.-_"
-	emailPattern := fmt.Sprintf(`Email:\s*([%s]+@[%s]+\.[%s]+)`, allowedSymbols, allowedSymbols, allowedSymbols)
+	allowedSymbols := "a-zA-Z0-9-_"
+
+	emailPattern := fmt.Sprintf(`Email:\s*([%s]+(\.[%s]+)*@[%s]+(\.[%s]+)+)`,
+		allowedSymbols, allowedSymbols, allowedSymbols, allowedSymbols)
+
 	emailPatternRegex := regexp.MustCompile(emailPattern)
 
 	matches := emailPatternRegex.FindAllString(str, -1)
