@@ -5,6 +5,13 @@ import (
 	"net/http"
 )
 
+// @Summary find substring
+// @Description Находит самую длинную подстроку без повторений
+// @Accept  text/plain
+// @Produce  text/plain
+// @Param str body string true "Input string"
+// @Success 200 {string} substring
+// @Router /substr/find [post]
 func (h *Handlers) findSubstring(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		w.WriteHeader(http.StatusMethodNotAllowed)

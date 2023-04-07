@@ -1,0 +1,51 @@
+basePath: /rest
+host: localhost:8080
+info:
+  contact: {}
+  description: Тестовое задние на позицию Golang junior в ЦАРКА
+  title: TSARKA test tasks API
+  version: "1.0"
+paths:
+  /email/check:
+    post:
+      consumes:
+      - text/plain
+      description: Находит все emails по паттерну  «Email:__$email»
+      parameters:
+      - description: Input string
+        in: body
+        name: str
+        required: true
+        schema:
+          type: string
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              type: string
+            type: array
+      summary: find emails
+  /substr/find:
+    post:
+      consumes:
+      - text/plain
+      description: Находит самую длинную подстроку без повторений
+      parameters:
+      - description: Input string
+        in: body
+        name: str
+        required: true
+        schema:
+          type: string
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: find substring
+swagger: "2.0"

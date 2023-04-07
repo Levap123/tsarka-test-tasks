@@ -14,11 +14,17 @@ import (
 	httpserver "github.com/Levap123/tsarka-test-tasks/pkg/http_server"
 )
 
+// @title			TSARKA test tasks API
+// @version		1.0
+// @description	Тестовое задние на позицию Golang junior в ЦАРКА
+// @host			localhost:8080
+// @BasePath		/rest
 func main() {
 	services := services.NewServices()
 	handlers := handlers.NewHandlers(services)
 
-	srv := httpserver.New(handlers.InitRoutes(), ":8080")
+	addr := ":8080"
+	srv := httpserver.New(handlers.InitRoutes(), addr)
 	srv.SetKeepAlivesEnabled(true)
 
 	shutdown := make(chan os.Signal, 1)
@@ -35,9 +41,8 @@ func main() {
 		}
 	}()
 
-	log.Println("server started")
+	log.Printf("server started, go to http://localhost%s/swagger", addr)
 	if err := srv.Start(); err != nil && err != http.ErrServerClosed {
 		log.Fatalf("fatal in starting server: %s", err.Error())
 	}
-
 }

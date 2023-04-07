@@ -6,6 +6,13 @@ import (
 	"net/http"
 )
 
+// @Summary find emails
+// @Description Находит все emails по паттерну  «Email:__$email»
+// @Accept  text/plain
+// @Produce  text/plain
+// @Param str body string true "Input string"
+// @Success 200 {array} string 
+// @Router /email/check [post]
 func (h *Handlers) checkStringOnEmailPattern(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		w.WriteHeader(http.StatusMethodNotAllowed)
