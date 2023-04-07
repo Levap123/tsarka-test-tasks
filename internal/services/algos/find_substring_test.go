@@ -42,6 +42,13 @@ func TestAlgosService_FindSubstring(t *testing.T) {
 			},
 			want: "a",
 		},
+		{
+			name: "should count aA, bB... zZ as different characters",
+			args: args{
+				"aaaAzZUubBuqqwerty",
+			},
+			want: "aAzZUubB",
+		},
 	}
 
 	for _, tt := range tests {
