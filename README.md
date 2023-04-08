@@ -11,7 +11,9 @@
 найденные email адреса.
 
 # run locally
-
+```bash
+https://github.com/Levap123/tsarka-test-tasks.git 
+```
 ```bash
 cd tsarka-test-tasks
 ```
