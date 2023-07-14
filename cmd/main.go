@@ -12,6 +12,7 @@ import (
 	"github.com/Levap123/tsarka-test-tasks/internal/handlers"
 	httpserver "github.com/Levap123/tsarka-test-tasks/internal/infrastructure/http"
 	"github.com/Levap123/tsarka-test-tasks/internal/infrastructure/redis"
+	"github.com/Levap123/tsarka-test-tasks/internal/repository"
 	"github.com/Levap123/tsarka-test-tasks/internal/services"
 )
 
@@ -21,12 +22,13 @@ import (
 // @host			localhost:8080
 // @BasePath		/rest
 func main() {
-	_, err := redis.New()
+	redisClient, err := redis.New()
 	if err != nil {
 		log.Fatalf("can not establish connection with redis: %v\n", err)
 	}
 
-	services := services.NewServices()
+	repo := repository.NewRepository(redisClient)
+	services := services.NewServices(repo)
 	handlers := handlers.NewHandlers(services)
 
 	addr := ":8080"
@@ -49,6 +51,6 @@ func main() {
 
 	log.Printf("server started, go to http://localhost%s/swagger", addr)
 	if err := srv.Start(); err != nil && err != http.ErrServerClosed {
-		log.Fatalf("fatal in starting server: %s", err)
+		log.Fatalf("fatal in starting server: %v", err)
 	}
 }

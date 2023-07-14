@@ -3,16 +3,21 @@ package handlers
 import (
 	"net/http"
 
-	_ "github.com/Levap123/tsarka-test-tasks/docs"
-
-	"github.com/swaggo/http-swagger"
+	"github.com/go-chi/chi"
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 func (h *Handlers) InitRoutes() http.Handler {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/rest/substr/find", h.findSubstring)
-	mux.HandleFunc("/rest/email/check", h.checkStringOnEmailPattern)
-	mux.Handle("/swagger/", httpSwagger.WrapHandler)
+	router := chi.NewRouter()
 
-	return mux
+	router.Post("/rest/substr/find", h.findSubstring)
+	router.Post("/rest/email/check", h.checkStringOnEmailPattern)
+
+	router.Post("/rest/counter/add/{num}", h.addCounter)
+	router.Post("/rest/counter/sub/{num}", h.subCounter)
+	router.Get("/rest/counter/val", h.getCounter)
+
+	router.Get("/swagger/*", httpSwagger.Handler())
+
+	return router
 }

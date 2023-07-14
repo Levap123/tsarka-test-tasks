@@ -3,6 +3,8 @@ module github.com/Levap123/tsarka-test-tasks
 go 1.20
 
 require (
+	github.com/go-chi/chi v1.5.4
+	github.com/redis/go-redis/v9 v9.0.5
 	github.com/swaggo/http-swagger v1.3.4
 	github.com/swaggo/swag v1.8.12
 )
@@ -17,7 +19,6 @@ require (
 	github.com/go-openapi/swag v0.19.15 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.6 // indirect
-	github.com/redis/go-redis/v9 v9.0.5 // indirect
 	github.com/swaggo/files v0.0.0-20220610200504-28940afbdbfe // indirect
 	golang.org/x/net v0.8.0 // indirect
 	golang.org/x/sys v0.6.0 // indirect

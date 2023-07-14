@@ -6,8 +6,10 @@ type Handlers struct {
 	services *services.Services
 }
 
-var errReadBody = []byte("could not read request body")
-var errMethodNotAllowed = []byte("method is not allowed")
+var (
+	errReadBody = []byte("could not read request body")
+	errNotFound = []byte("not found")
+)
 
 func NewHandlers(s *services.Services) *Handlers {
 	return &Handlers{
