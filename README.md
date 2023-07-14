@@ -1,6 +1,6 @@
 # tsarka-test-tasks
 
-Тестовое задание на позицию junior Golang developer в ЦАРКА (bugbounty)
+Тестовое задание на позицию junior Golang developer в ЦАРКА (webtotem)
 
 # доступные эндпоинты
 
