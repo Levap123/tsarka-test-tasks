@@ -2,6 +2,6 @@ package algos
 
 type AlgosService struct{}
 
-func NewAlgosService() *AlgosService {
+func NewService() *AlgosService {
 	return &AlgosService{}
 }

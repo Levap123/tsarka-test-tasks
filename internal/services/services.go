@@ -13,6 +13,6 @@ type AlgosServiceI interface {
 
 func NewServices() *Services {
 	return &Services{
-		AlgosServiceI: algos.NewAlgosService(),
+		AlgosServiceI: algos.NewService(),
 	}
 }
