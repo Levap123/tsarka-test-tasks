@@ -10,6 +10,7 @@ type Server struct {
 	http *http.Server
 }
 
+// hardcoded because i too lazy for adding configs
 func New(routes http.Handler, addr string) *Server {
 	return &Server{
 		http: &http.Server{
