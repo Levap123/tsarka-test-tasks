@@ -17,6 +17,11 @@ func (h *Handlers) InitRoutes() http.Handler {
 	router.Post("/rest/counter/sub/{num}", h.subCounter)
 	router.Get("/rest/counter/val", h.getCounter)
 
+	router.Post("/rest/user", h.createUser)
+	router.Get("/rest/user/{user_id}", h.getUser)
+	router.Delete("/rest/user/{user_id}", h.deleteUser)
+	router.Put("/rest/user/{user_id}", h.updateUser)
+
 	router.Get("/swagger/*", httpSwagger.Handler())
 
 	return router

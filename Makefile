@@ -9,3 +9,6 @@ make build:
 
 make run: 
 	docker run -p 8080:8080 tsarka-test-task 
+
+make migrate:
+	goose -dir=migrations postgres "user=dev password=dev dbname=dev sslmode=disable" up

@@ -14,7 +14,7 @@ func (r *Repo) Get(ctx context.Context, ID int) (models.User, error) {
 
 	var user models.User
 	if err := r.DB.QueryRowContext(ctx, query, ID).
-		Scan(user.ID, user.FirstName, user.LastName); err != nil {
+		Scan(&user.ID, &user.FirstName, &user.LastName); err != nil {
 
 		if errors.Is(err, sql.ErrNoRows) {
 			return models.User{}, nil

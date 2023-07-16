@@ -21,7 +21,7 @@ type CounterRepoI interface {
 }
 
 type UserRepoI interface {
-	Create(ctx context.Context, user models.User) (int64, error)
+	Create(ctx context.Context, user models.User) (int, error)
 	Get(ctx context.Context, userID int) (models.User, error)
 	Delete(ctx context.Context, userID int) error
 	Update(ctx context.Context, user models.User) error
