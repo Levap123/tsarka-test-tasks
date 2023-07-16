@@ -28,5 +28,13 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  migrate:
+    build:
+      context: .
+      dockerfile: Dockerfile.migrations
+    command: sh -c 'goose -dir=migrations postgres "host=postgres port=5432 user=dev password=dev dbname=dev sslmode=disable" up'
+    depends_on: 
+      - postgres
+
 volumes:
   postgres_data:
