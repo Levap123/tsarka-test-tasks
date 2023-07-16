@@ -11,6 +11,7 @@ import (
 
 	"github.com/Levap123/tsarka-test-tasks/internal/handlers"
 	httpserver "github.com/Levap123/tsarka-test-tasks/internal/infrastructure/http"
+	"github.com/Levap123/tsarka-test-tasks/internal/infrastructure/postgres"
 	"github.com/Levap123/tsarka-test-tasks/internal/infrastructure/redis"
 	"github.com/Levap123/tsarka-test-tasks/internal/repository"
 	"github.com/Levap123/tsarka-test-tasks/internal/services"
@@ -27,7 +28,12 @@ func main() {
 		log.Fatalf("can not establish connection with redis: %v\n", err)
 	}
 
-	repo := repository.NewRepository(redisClient)
+	DB, err := postgres.New()
+	if err != nil {
+		log.Fatalf("can not establish connection with postgres: %v\n", err)
+	}
+
+	repo := repository.NewRepository(redisClient, DB)
 	services := services.NewServices(repo)
 	handlers := handlers.NewHandlers(services)
 

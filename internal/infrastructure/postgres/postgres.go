@@ -16,8 +16,8 @@ const (
 	dbname   = "dev"
 )
 
-func NewPostgres() (*sql.DB, error) {
-	DB, err := sql.Open("postgres", fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disabled",
+func New() (*sql.DB, error) {
+	DB, err := sql.Open("postgres", fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname))
 	if err != nil {
 		return nil, err
