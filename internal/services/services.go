@@ -7,6 +7,7 @@ import (
 	"github.com/Levap123/tsarka-test-tasks/internal/repository"
 	"github.com/Levap123/tsarka-test-tasks/internal/services/algos"
 	"github.com/Levap123/tsarka-test-tasks/internal/services/counter"
+	"github.com/Levap123/tsarka-test-tasks/internal/services/hash"
 	"github.com/Levap123/tsarka-test-tasks/internal/services/user"
 )
 
@@ -14,6 +15,7 @@ type Services struct {
 	AlgosServiceI
 	CounterServiceI
 	UserServiceI
+	HashServiceI
 }
 
 type AlgosServiceI interface {
@@ -34,10 +36,16 @@ type UserServiceI interface {
 	Update(ctx context.Context, userID int, firstName, lastName string) error
 }
 
+type HashServiceI interface {
+	GenerateHash(ctx context.Context, val string) (int, error)
+	Get(ctx context.Context, ID int) (string, error)
+}
+
 func NewServices(repo *repository.Repository) *Services {
 	return &Services{
 		AlgosServiceI:   algos.NewService(),
 		CounterServiceI: counter.NewService(repo.CounterRepoI),
 		UserServiceI:    user.NewService(repo.UserRepoI),
+		HashServiceI:    hash.NewService(repo.HashRepoI),
 	}
 }

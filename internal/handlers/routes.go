@@ -22,6 +22,9 @@ func (h *Handlers) InitRoutes() http.Handler {
 	router.Delete("/rest/user/{user_id}", h.deleteUser)
 	router.Put("/rest/user/{user_id}", h.updateUser)
 
+	router.Post("/rest/hash/calc", h.startHashCalc)
+	router.Get("/rest/hash/result/{hash_id}", h.getHash)
+
 	router.Get("/swagger/*", httpSwagger.Handler())
 
 	return router

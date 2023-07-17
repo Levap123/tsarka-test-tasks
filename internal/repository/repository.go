@@ -6,6 +6,7 @@ import (
 
 	"github.com/Levap123/tsarka-test-tasks/internal/models"
 	"github.com/Levap123/tsarka-test-tasks/internal/repository/counter"
+	"github.com/Levap123/tsarka-test-tasks/internal/repository/hash"
 	"github.com/Levap123/tsarka-test-tasks/internal/repository/user"
 	"github.com/redis/go-redis/v9"
 )
@@ -13,6 +14,7 @@ import (
 type Repository struct {
 	CounterRepoI
 	UserRepoI
+	HashRepoI
 }
 
 type CounterRepoI interface {
@@ -27,9 +29,16 @@ type UserRepoI interface {
 	Update(ctx context.Context, user models.User) error
 }
 
+type HashRepoI interface {
+	Create(ctx context.Context, hash models.Hash) (int, error)
+	Get(ctx context.Context, hashID int) (models.Hash, error)
+	Update(ctx context.Context, hash models.Hash) error
+}
+
 func NewRepository(cl *redis.Client, DB *sql.DB) *Repository {
 	return &Repository{
 		CounterRepoI: counter.NewRepo(cl),
 		UserRepoI:    user.NewRepo(DB),
+		HashRepoI:    hash.NewRepo(DB),
 	}
 }
