@@ -29,7 +29,6 @@
 11) GET /rest/hash/result/{hash_id} - Этот эндпоинт для получени хеша/статуса по хещу
 
 # run locally
-Есть композник, но я не написал туда сервис для запуска миграций 
 
 ```bash
 git clone https://github.com/Levap123/tsarka-test-tasks.git 
@@ -38,6 +37,7 @@ git clone https://github.com/Levap123/tsarka-test-tasks.git
 cd tsarka-test-tasks
 ```
 
+запустить редис и постгрю с композа, но лучше make run, но меньше мороки если просто не запускать локально
 ```bash
 make go
 ```
